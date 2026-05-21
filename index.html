@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantified Carbon — Coming soon</title>
+  <meta name="description" content="Quantified Carbon — a new home for rigorous, quantified decarbonisation is on its way." />
+  <link rel="icon" type="image/svg+xml" href="assets/quantified-carbon-logo.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Decorative ribbon, sits behind content -->
+    <img class="page__decoration" src="assets/union-decoration.svg" alt="" aria-hidden="true" />
+
+    <header class="site-header">
+      <a class="site-header__brand" href="#" aria-label="Quantified Carbon home">
+        <img src="assets/quantified-carbon-logo-dark.svg" alt="Quantified Carbon" width="185" height="36" />
+      </a>
+      <span class="badge">In progress</span>
+    </header>
+
+    <main class="hero">
+      <p class="eyebrow">Coming soon</p>
+
+      <h1 class="hero__title">
+        A clearer picture of carbon is on its way.
+      </h1>
+
+      <p class="hero__lede">
+        We are building a new home for rigorous, quantified decarbonisation —
+        the analysis, modelling and advisory work behind real climate decisions.
+        It launches soon.
+      </p>
+
+      <section class="countdown" aria-label="Time remaining until launch">
+        <div class="countdown__cell">
+          <span class="countdown__value" id="cd-days">00</span>
+          <span class="countdown__label">Days</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__cell">
+          <span class="countdown__value" id="cd-hours">00</span>
+          <span class="countdown__label">Hours</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__cell">
+          <span class="countdown__value" id="cd-minutes">00</span>
+          <span class="countdown__label">Minutes</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__cell">
+          <span class="countdown__value" id="cd-seconds">00</span>
+          <span class="countdown__label">Seconds</span>
+        </div>
+      </section>
+
+      <p class="hero__date">
+        Launching <time datetime="2026-07-01">1 July 2026</time>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__copy">&copy; <span id="year">2026</span> Quantified Carbon</p>
+      <p class="site-footer__contact">
+        <a href="mailto:hello@quantifiedcarbon.com">hello@quantifiedcarbon.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // ---- Live countdown to launch -------------------------------------
+    var LAUNCH = new Date("2026-07-01T00:00:00").getTime();
+
+    var els = {
+      days: document.getElementById("cd-days"),
+      hours: document.getElementById("cd-hours"),
+      minutes: document.getElementById("cd-minutes"),
+      seconds: document.getElementById("cd-seconds")
+    };
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function tick() {
+      var now = Date.now();
+      var diff = LAUNCH - now;
+
+      if (diff <= 0) {
+        els.days.textContent = "00";
+        els.hours.textContent = "00";
+        els.minutes.textContent = "00";
+        els.seconds.textContent = "00";
+        clearInterval(timer);
+        return;
+      }
+
+      var secs = Math.floor(diff / 1000);
+      var days = Math.floor(secs / 86400);
+      var hours = Math.floor((secs % 86400) / 3600);
+      var minutes = Math.floor((secs % 3600) / 60);
+      var seconds = secs % 60;
+
+      els.days.textContent = pad(days);
+      els.hours.textContent = pad(hours);
+      els.minutes.textContent = pad(minutes);
+      els.seconds.textContent = pad(seconds);
+    }
+
+    tick();
+    var timer = setInterval(tick, 1000);
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
