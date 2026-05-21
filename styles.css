@@ -65,6 +65,17 @@
   }
 }
 
+@keyframes background-pattern-in {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 0.06;
+    transform: translateY(0);
+  }
+}
+
 /* ----- Reset ------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -110,6 +121,7 @@ img { display: block; max-width: 100%; }
   filter: brightness(0) invert(1);
   pointer-events: none;
   user-select: none;
+  animation: background-pattern-in 900ms ease-out 180ms both;
 }
 
 /* ----- Header ------------------------------------------------------------ */
@@ -290,7 +302,8 @@ img { display: block; max-width: 100%; }
   :root { --motion-default: 0ms linear; }
   .eyebrow,
   .hero__title,
-  .hero__lede {
+  .hero__lede,
+  .page__decoration {
     animation: none;
   }
 }
